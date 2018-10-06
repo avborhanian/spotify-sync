@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/site.conf
+    ports:
+      - "3000:3000"
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["pipenv", "run", "python", "app.py"]
+    ports:
+      - "5000:5000"
+  websocket:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["pipenv", "run", "python", "websocket.py"]
+    ports:
+      - "6789:6789"

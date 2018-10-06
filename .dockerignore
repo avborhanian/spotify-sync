@@ -1,0 +1,5 @@
+*.py
+node_modules/
+static/
+templates/
+*.json
